@@ -18,7 +18,7 @@ namespace NoughtsAndCrosses.Tests
 
             //Assert
             Assert.AreEqual(9, board.Count);
-            
+
             foreach (var cell in board)
             {
                 Assert.AreEqual(Game.CellStatus.Empty, cell);
@@ -34,7 +34,7 @@ namespace NoughtsAndCrosses.Tests
             var randomCell = new Random().Next(0, 8);
 
             // Act
-            board = game.MakeMove(Game.CellStatus.Player1, randomCell);
+            board = game.MakeNextMove(Game.CellStatus.Player1, randomCell);
 
             // Assert
             for (var i = 0; i < board.Count; i++)
@@ -47,6 +47,24 @@ namespace NoughtsAndCrosses.Tests
 
                 Assert.AreEqual(Game.CellStatus.Empty, board[i]);
             }
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenGameStarts_PlayersShouldPickRandomCells()
+        {
+            // Assign
+            var game = new Game();
+            game.InitializeBoard();
+
+            // Act
+            var player1CellIndex = game.GetNextRandomAvailableCellIndex();
+            game.MakeNextMove(Game.CellStatus.Player1, player1CellIndex);
+
+            var player2Cell = game.GetNextRandomAvailableCellIndex();
+            game.MakeNextMove(Game.CellStatus.Player2, player2Cell);
+
+            // Assert
+            Assert.AreNotEqual(player1CellIndex, player2Cell);
         }
     }
 }
