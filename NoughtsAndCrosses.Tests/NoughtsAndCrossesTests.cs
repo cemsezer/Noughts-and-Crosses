@@ -14,14 +14,14 @@ namespace NoughtsAndCrosses.Tests
             var game = new Game();
 
             // Act
-            var board = game.InitializeBoard();
+            game.InitializeBoard();
 
             //Assert
-            Assert.AreEqual(9, board.Count);
+            Assert.AreEqual(9, game.Board.Cells.Count);
 
-            foreach (var cell in board)
+            foreach (var cell in game.Board.Cells)
             {
-                Assert.AreEqual(Game.CellStatus.Empty, cell);
+                Assert.AreEqual(Cell.Empty, cell);
             }
         }
 
@@ -30,22 +30,22 @@ namespace NoughtsAndCrosses.Tests
         {
             // Assign
             var game = new Game();
-            var board = game.InitializeBoard();
+            game.InitializeBoard();
             var randomCell = new Random().Next(0, 8);
 
             // Act
-            board = game.MakeNextMove(Game.CellStatus.Player1, randomCell);
+            game.MakeNextMove(Cell.Player1, randomCell);
 
             // Assert
-            for (var i = 0; i < board.Count; i++)
+            for (var i = 0; i < game.Board.Cells.Count; i++)
             {
                 if (i == randomCell)
                 {
-                    Assert.AreEqual(Game.CellStatus.Player1, board[randomCell]);
+                    Assert.AreEqual(Cell.Player1, game.Board.Cells[randomCell]);
                     continue;
                 }
 
-                Assert.AreEqual(Game.CellStatus.Empty, board[i]);
+                Assert.AreEqual(Cell.Empty, game.Board.Cells[i]);
             }
         }
 
@@ -58,10 +58,10 @@ namespace NoughtsAndCrosses.Tests
 
             // Act
             var player1CellIndex = game.GetNextRandomAvailableCellIndex();
-            game.MakeNextMove(Game.CellStatus.Player1, player1CellIndex);
+            game.MakeNextMove(Cell.Player1, player1CellIndex);
 
             var player2Cell = game.GetNextRandomAvailableCellIndex();
-            game.MakeNextMove(Game.CellStatus.Player2, player2Cell);
+            game.MakeNextMove(Cell.Player2, player2Cell);
 
             // Assert
             Assert.AreNotEqual(player1CellIndex, player2Cell);

@@ -5,38 +5,29 @@ namespace NoughtsAndCrosses.Console
 {
     public class Game
     {
-        private List<CellStatus> _board;
-        public enum CellStatus {Empty, Player1, Player2 }
+        public Board Board { get; private set; }
 
-        public List<CellStatus> InitializeBoard()
+        public void InitializeBoard()
         {
-            _board = new List<CellStatus>();
-
-            for (var i = 0; i < 9; i++)
-            {
-                _board.Add(CellStatus.Empty);
-            }
-
-            return _board;
+            Board = new Board();
         }
 
-        public List<CellStatus> MakeNextMove(CellStatus cellStatus, int cellIndex)
+        public void MakeNextMove(Cell cell, int cellIndex)
         {
-            _board[cellIndex] = cellStatus;
-            return _board;
+            Board.Cells[cellIndex] = cell;
         }
 
         public int GetNextRandomAvailableCellIndex()
         {
             var availableCells = new List<int>();
-            
-            for (var i = 0; i < _board.Count; i++)
+
+            for (var i = 0; i < Board.Cells.Count; i++)
             {
-                if(_board[i] == CellStatus.Empty)
+                if (Board.Cells[i] == Cell.Empty)
                     availableCells.Add(i);
             }
 
-            var next = new Random().Next(0, availableCells.Count-1);
+            var next = new Random().Next(0, availableCells.Count - 1);
             return availableCells[next];
         }
     }
