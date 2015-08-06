@@ -6,7 +6,8 @@ Solution includes two projects:
 NoughtsAndCrosses.Console
 NoughtsAndCrosses.Tests
 
-GitHub:
+
+GitHub: https://github.com/cemsezer/Noughts-and-Crosses.git
 Ismail Cem Sezer
 cemsezer@yahoo.com
 06/08/2015
