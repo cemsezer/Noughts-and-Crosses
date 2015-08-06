@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace NoughtsAndCrosses
 {
+    /// <summary>
+    /// Manages Noughts and Crosses Game, initializes the game board, checks the winner
+    /// </summary>
     public class Game
     {
         private readonly IBoardDisplayer _boardDisplayer;
@@ -74,9 +77,14 @@ namespace NoughtsAndCrosses
             return isGameFinished;
         }
 
-        public bool PlayAndCheck(Player player, int cellIndex)
+        /// <summary>
+        /// Makes a random move for a player and then checks if the player wins or all cells in the game board were used
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>True when game is over</returns>
+        public bool PlayAndCheck(Player player)
         {
-            MakeNextMove(player, cellIndex);
+            MakeNextMove(player, GetNextRandomAvailableCellIndex());
             _boardDisplayer.DisplayBoard(Board);
 
             if (HasPlayerWon(player))

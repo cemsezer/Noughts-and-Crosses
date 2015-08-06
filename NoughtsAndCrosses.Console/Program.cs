@@ -3,7 +3,7 @@
 namespace NoughtsAndCrosses
 {
     /// <summary>
-    /// Main entry point for the Noughts And Crosses
+    /// Main entry point for the Noughts And Crosses game
     /// Prompts user to start the game and repeats the game until user closes the console window
     /// </summary>
     class Program
@@ -21,10 +21,10 @@ namespace NoughtsAndCrosses
 
                 while (true)
                 {
-                    if (game.PlayAndCheck(Player.Player1, game.GetNextRandomAvailableCellIndex()))
+                    if (game.PlayAndCheck(Player.Player1))
                         break;
 
-                    if (game.PlayAndCheck(Player.Player2, game.GetNextRandomAvailableCellIndex()))
+                    if (game.PlayAndCheck(Player.Player2))
                         break;
                 }
             }

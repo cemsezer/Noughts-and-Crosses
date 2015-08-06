@@ -148,7 +148,7 @@ namespace NoughtsAndCrosses.Tests
             game.InitializeBoard();
 
             // Act
-            game.PlayAndCheck(Player.Player1, 1);
+            game.PlayAndCheck(Player.Player1);
 
             //Assert
             boardDisplayerMock.Verify(b => b.DisplayBoard(game.Board), Times.Once);
@@ -164,9 +164,10 @@ namespace NoughtsAndCrosses.Tests
             game.InitializeBoard();
             game.MakeNextMove(Player.Player1, 0);
             game.MakeNextMove(Player.Player1, 1);
+            game.MakeNextMove(Player.Player1, 2);
 
             // Act
-            game.PlayAndCheck(Player.Player1, 2);
+            game.PlayAndCheck(Player.Player1);
 
             // Assert
             boardDisplayerMock.Verify(b => b.DisplayWinner(Player.Player1));
@@ -180,10 +181,9 @@ namespace NoughtsAndCrosses.Tests
             var game = new Game(boardDisplayerMock.Object);
             game.InitializeBoard();
             game.MakeNextMove(Player.Player1, 0);
-            game.MakeNextMove(Player.Player1, 1);
 
             // Act
-            game.PlayAndCheck(Player.Player1, 3);
+            game.PlayAndCheck(Player.Player1);
 
             // Assert
             boardDisplayerMock.Verify(b => b.DisplayWinner(Player.Player1), Times.Never);
@@ -198,7 +198,7 @@ namespace NoughtsAndCrosses.Tests
             game.InitializeBoard();
             
             // Act
-            var isOver = game.PlayAndCheck(Player.Player1, 3);
+            var isOver = game.PlayAndCheck(Player.Player1);
 
             // Assert
             Assert.IsFalse(isOver);
