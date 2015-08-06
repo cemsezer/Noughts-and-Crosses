@@ -1,7 +1,9 @@
 C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\NoughtsAndCrosses.Tests.dll
 C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\NoughtsAndCrosses.Tests.pdb
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\NoughtsAndCrosses.Console.exe
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\NoughtsAndCrosses.Console.pdb
 C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\obj\Debug\NoughtsAndCrosses.Tests.csprojResolveAssemblyReference.cache
 C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\obj\Debug\NoughtsAndCrosses.Tests.dll
 C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\obj\Debug\NoughtsAndCrosses.Tests.pdb
+C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\NoughtsAndCrosses.exe
+C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\NoughtsAndCrosses.pdb
+C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\Moq.dll
+C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Tests\bin\Debug\Moq.xml

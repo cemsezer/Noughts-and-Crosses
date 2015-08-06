@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoughtsAndCrosses.Console", "NoughtsAndCrosses.Console.csproj", "{A098C4F7-98A3-4488-BC67-C05BC396C841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoughtsAndCrosses", "NoughtsAndCrosses.csproj", "{A098C4F7-98A3-4488-BC67-C05BC396C841}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoughtsAndCrosses.Tests", "..\NoughtsAndCrosses.Tests\NoughtsAndCrosses.Tests.csproj", "{2D36C5EE-21C3-42A7-84F7-7CE2EAA54BAE}"
 EndProject

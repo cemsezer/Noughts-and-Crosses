@@ -1,5 +1,8 @@
-namespace NoughtsAndCrosses.Console
+namespace NoughtsAndCrosses
 {
+    /// <summary>
+    /// Holds the current status of a cell in the game board
+    /// </summary>
     public class Cell
     {
         public Player? Value { get; set; }

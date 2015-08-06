@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NoughtsAndCrosses.Console;
+using Moq;
 
 namespace NoughtsAndCrosses.Tests
 {
@@ -11,7 +11,7 @@ namespace NoughtsAndCrosses.Tests
         public void GivenGameInitializes_WhenGameStarts_ThenShouldHaveEmptyBoard()
         {
             // Assign
-            var game = new Game();
+            var game = new Game(new BoardDisplayer());
 
             // Act
             game.InitializeBoard();
@@ -29,7 +29,7 @@ namespace NoughtsAndCrosses.Tests
         public void GivenGameInitializes_WhenPlayer1MakesAMove_ThenBoardShouldShowThis()
         {
             // Assign
-            var game = new Game();
+            var game = new Game(new BoardDisplayer());
             game.InitializeBoard();
             var randomCell = new Random().Next(0, 8);
 
@@ -53,7 +53,7 @@ namespace NoughtsAndCrosses.Tests
         public void GivenGameInitializes_WhenGameStarts_ThenPlayersShouldPickRandomCells()
         {
             // Assign
-            var game = new Game();
+            var game = new Game(new BoardDisplayer());
             game.InitializeBoard();
 
             // Act
@@ -71,7 +71,7 @@ namespace NoughtsAndCrosses.Tests
         public void GivenGameInitializes_WhenAPlayerTicksWinningCombination_ThenPlayer1ShouldWin()
         {
             // Assign
-            var game = new Game();
+            var game = new Game(new BoardDisplayer());
             game.InitializeBoard();
             game.MakeNextMove(Player.Player1, 0);
             game.MakeNextMove(Player.Player1, 1);
@@ -88,7 +88,7 @@ namespace NoughtsAndCrosses.Tests
         public void GivenGameInitializes_WhenAPlayerDoesNotTicksWinningCombination_ThenPlayer1ShouldNotWin()
         {
             // Assign
-            var game = new Game();
+            var game = new Game(new BoardDisplayer());
             game.InitializeBoard();
             game.MakeNextMove(Player.Player1, 0);
             game.MakeNextMove(Player.Player1, 1);
@@ -105,7 +105,7 @@ namespace NoughtsAndCrosses.Tests
         public void GivenGameInitializes_WhenPlayersNotUseAllTheCells_ThenGameShouldNotFinish()
         {
             // Assign
-            var game = new Game();
+            var game = new Game(new BoardDisplayer());
             game.InitializeBoard();
 
             for (var i = 0; i < game.Board.Cells.Count - 1; i++)
@@ -124,7 +124,7 @@ namespace NoughtsAndCrosses.Tests
         public void GivenGameInitializes_WhenPlayersUseAllTheCells_ThenGameShouldFinish()
         {
             // Assign
-            var game = new Game();
+            var game = new Game(new BoardDisplayer());
             game.InitializeBoard();
 
             for (var i = 0; i < game.Board.Cells.Count; i++)
@@ -137,6 +137,39 @@ namespace NoughtsAndCrosses.Tests
 
             // Assert
             Assert.IsTrue(isFinished);
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenAPlayerPlays_ThenShouldDisplayBoard()
+        {
+            // Assign
+            var boardDisplayerMock = new Mock<IBoardDisplayer>();
+            var game = new Game(boardDisplayerMock.Object);
+            game.InitializeBoard();
+
+            // Act
+            game.Play(Player.Player1, 1);
+
+            //Assert
+            boardDisplayerMock.Verify(b => b.Display(game.Board), Times.Once);
+
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenAPlayerWins_ThenShouldDisplayResult()
+        {
+            // Assign
+            var boardDisplayerMock = new Mock<IBoardDisplayer>();
+            var game = new Game(boardDisplayerMock.Object);
+            game.InitializeBoard();
+            game.MakeNextMove(Player.Player1, 0);
+            game.MakeNextMove(Player.Player1, 1);
+
+            // Act
+            game.Play(Player.Player1, 2);
+
+            // Assert
+            boardDisplayerMock.Verify(b => b.DisplayResult(Player.Player1));
         }
     }
 }

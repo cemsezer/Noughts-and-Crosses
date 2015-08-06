@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\NoughtsAndCrosses.Console\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -54,10 +57,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NoughtsAndCrosses.Console\NoughtsAndCrosses.Console.csproj">
+    <ProjectReference Include="..\NoughtsAndCrosses.Console\NoughtsAndCrosses.csproj">
       <Project>{A098C4F7-98A3-4488-BC67-C05BC396C841}</Project>
-      <Name>NoughtsAndCrosses.Console</Name>
+      <Name>NoughtsAndCrosses</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

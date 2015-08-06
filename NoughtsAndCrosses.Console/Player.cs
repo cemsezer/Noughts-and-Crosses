@@ -1,4 +1,4 @@
-namespace NoughtsAndCrosses.Console
+namespace NoughtsAndCrosses
 {
     public enum Player { Player1, Player2}
 }

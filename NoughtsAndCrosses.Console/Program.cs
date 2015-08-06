@@ -1,4 +1,4 @@
-﻿namespace NoughtsAndCrosses.Console
+﻿namespace NoughtsAndCrosses
 {
     class Program
     {

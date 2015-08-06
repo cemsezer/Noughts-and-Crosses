@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoughtsAndCrosses.Console
+namespace NoughtsAndCrosses
 {
     public class Game
     {
+        private readonly IBoardDisplayer _boardDisplayer;
+
         private static readonly List<int[]> WinningCombinations = new List<int[]>
         {
             new[] {0, 1, 2},
@@ -17,6 +19,11 @@ namespace NoughtsAndCrosses.Console
             new[] {0, 4, 8},
             new[] {2, 4, 6},
         };
+
+        public Game(IBoardDisplayer boardDisplayer)
+        {
+            _boardDisplayer = boardDisplayer;
+        }
 
         public Board Board { get; private set; }
 
@@ -62,6 +69,17 @@ namespace NoughtsAndCrosses.Console
         public bool IsGameFinished()
         {
             return Board.Cells.All(cell => cell.HasValue);
+        }
+
+        public void Play(Player player, int cellIndex)
+        {
+            MakeNextMove(player, cellIndex);
+            _boardDisplayer.Display(Board);
+
+            if (HasPlayerWon(player))
+            {
+                _boardDisplayer.DisplayResult(player);
+            }
         }
     }
 }

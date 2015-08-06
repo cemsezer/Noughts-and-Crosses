@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 
-namespace NoughtsAndCrosses.Console
+namespace NoughtsAndCrosses
 {
+    /// <summary>
+    /// Holds the current status of all cells in the game board
+    /// </summary>
     public class Board
     {
         public Board()
