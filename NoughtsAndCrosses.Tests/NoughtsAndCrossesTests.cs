@@ -21,7 +21,7 @@ namespace NoughtsAndCrosses.Tests
 
             foreach (var cell in game.Board.Cells)
             {
-                Assert.AreEqual(Cell.Empty, cell);
+                Assert.IsNull(cell.Value);
             }
         }
 
@@ -34,23 +34,23 @@ namespace NoughtsAndCrosses.Tests
             var randomCell = new Random().Next(0, 8);
 
             // Act
-            game.MakeNextMove(Cell.Player1, randomCell);
+            game.MakeNextMove(Player.Player1, randomCell);
 
             // Assert
             for (var i = 0; i < game.Board.Cells.Count; i++)
             {
                 if (i == randomCell)
                 {
-                    Assert.AreEqual(Cell.Player1, game.Board.Cells[randomCell]);
+                    Assert.AreEqual(Player.Player1, game.Board.Cells[randomCell].Value);
                     continue;
                 }
 
-                Assert.AreEqual(Cell.Empty, game.Board.Cells[i]);
+                Assert.IsNull(game.Board.Cells[i].Value);
             }
         }
 
         [TestMethod]
-        public void GivenGameInitializes_WhenGameStarts_PlayersShouldPickRandomCells()
+        public void GivenGameInitializes_WhenGameStarts_ThenPlayersShouldPickRandomCells()
         {
             // Assign
             var game = new Game();
@@ -58,13 +58,30 @@ namespace NoughtsAndCrosses.Tests
 
             // Act
             var player1CellIndex = game.GetNextRandomAvailableCellIndex();
-            game.MakeNextMove(Cell.Player1, player1CellIndex);
+            game.MakeNextMove(Player.Player1, player1CellIndex);
 
             var player2Cell = game.GetNextRandomAvailableCellIndex();
-            game.MakeNextMove(Cell.Player2, player2Cell);
+            game.MakeNextMove(Player.Player2, player2Cell);
 
             // Assert
             Assert.AreNotEqual(player1CellIndex, player2Cell);
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenAPlayerTicksWinningCombination_ThenPlayer1ShouldWin()
+        {
+            // Assign
+            var game = new Game();
+            game.InitializeBoard();
+            game.MakeNextMove(Player.Player1, 0);
+            game.MakeNextMove(Player.Player1, 1);
+            game.MakeNextMove(Player.Player1, 2);
+
+            // Act
+            var hasPlayerWon = game.HasPlayerWon(Player.Player1);
+
+            // Assert
+            Assert.IsTrue(hasPlayerWon);
         }
     }
 }

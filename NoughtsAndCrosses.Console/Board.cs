@@ -10,7 +10,7 @@ namespace NoughtsAndCrosses.Console
             
             for (var i = 0; i < 9; i++)
             {
-               Cells.Add(Cell.Empty);
+               Cells.Add(new Cell());
             }   
         }
 
