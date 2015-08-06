@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace NoughtsAndCrosses.Console
+﻿namespace NoughtsAndCrosses.Console
 {
     class Program
     {

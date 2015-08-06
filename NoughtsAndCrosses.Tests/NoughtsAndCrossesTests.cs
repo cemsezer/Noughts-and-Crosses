@@ -8,7 +8,7 @@ namespace NoughtsAndCrosses.Tests
     public class NoughtsAndCrossesTests
     {
         [TestMethod]
-        public void GivenGameInitializes_WhenGameStarts_ShouldHaveEmptyBoard()
+        public void GivenGameInitializes_WhenGameStarts_ThenShouldHaveEmptyBoard()
         {
             // Assign
             var game = new Game();
@@ -16,12 +16,12 @@ namespace NoughtsAndCrosses.Tests
             // Act
             game.InitializeBoard();
 
-            //Assert
+            // Assert
             Assert.AreEqual(9, game.Board.Cells.Count);
 
             foreach (var cell in game.Board.Cells)
             {
-                Assert.IsNull(cell.Value);
+                Assert.IsFalse(cell.Value.HasValue);
             }
         }
 
@@ -45,7 +45,7 @@ namespace NoughtsAndCrosses.Tests
                     continue;
                 }
 
-                Assert.IsNull(game.Board.Cells[i].Value);
+                Assert.IsFalse(game.Board.Cells[i].Value.HasValue);
             }
         }
 
@@ -82,6 +82,61 @@ namespace NoughtsAndCrosses.Tests
 
             // Assert
             Assert.IsTrue(hasPlayerWon);
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenAPlayerDoesNotTicksWinningCombination_ThenPlayer1ShouldNotWin()
+        {
+            // Assign
+            var game = new Game();
+            game.InitializeBoard();
+            game.MakeNextMove(Player.Player1, 0);
+            game.MakeNextMove(Player.Player1, 1);
+            game.MakeNextMove(Player.Player1, 3);
+
+            // Act
+            var hasPlayerWon = game.HasPlayerWon(Player.Player1);
+
+            // Assert
+            Assert.IsFalse(hasPlayerWon);
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenPlayersNotUseAllTheCells_ThenGameShouldNotFinish()
+        {
+            // Assign
+            var game = new Game();
+            game.InitializeBoard();
+
+            for (var i = 0; i < game.Board.Cells.Count - 1; i++)
+            {
+                game.MakeNextMove(Player.Player1, i);
+            }
+
+            // Act
+            bool isFinished = game.IsGameFinished();
+
+            // Assert
+            Assert.IsFalse(isFinished);
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenPlayersUseAllTheCells_ThenGameShouldFinish()
+        {
+            // Assign
+            var game = new Game();
+            game.InitializeBoard();
+
+            for (var i = 0; i < game.Board.Cells.Count; i++)
+            {
+                game.MakeNextMove(Player.Player1, i);
+            }
+
+            // Act
+            bool isFinished = game.IsGameFinished();
+
+            // Assert
+            Assert.IsTrue(isFinished);
         }
     }
 }
