@@ -1,6 +1,0 @@
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Console\bin\Debug\NoughtsAndCrosses.Console.exe.config
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Console\bin\Debug\NoughtsAndCrosses.Console.exe
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Console\bin\Debug\NoughtsAndCrosses.Console.pdb
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Console\obj\Debug\NoughtsAndCrosses.Console.exe
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Console\obj\Debug\NoughtsAndCrosses.Console.pdb
-C:\Projects\Noughts-and-Crosses\NoughtsAndCrosses.Console\obj\Debug\NoughtsAndCrosses.Console.csprojResolveAssemblyReference.cache

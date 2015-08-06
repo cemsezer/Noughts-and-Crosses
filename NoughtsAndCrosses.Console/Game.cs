@@ -5,7 +5,7 @@ using System.Linq;
 namespace NoughtsAndCrosses
 {
     /// <summary>
-    /// Manages Noughts and Crosses Game, initializes the game board, checks the winner
+    /// Manages Noughts and Crosses Game, initializes the game board, checks if the game is over
     /// </summary>
     public class Game
     {
@@ -78,7 +78,7 @@ namespace NoughtsAndCrosses
         }
 
         /// <summary>
-        /// Makes a random move for a player and then checks if the player wins or all cells in the game board were used
+        /// Makes a random move for a player and then checks if the player wins or checks if all cells in the game board were used
         /// </summary>
         /// <param name="player"></param>
         /// <returns>True when game is over</returns>
