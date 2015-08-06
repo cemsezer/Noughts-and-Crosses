@@ -148,10 +148,10 @@ namespace NoughtsAndCrosses.Tests
             game.InitializeBoard();
 
             // Act
-            game.Play(Player.Player1, 1);
+            game.PlayAndCheck(Player.Player1, 1);
 
             //Assert
-            boardDisplayerMock.Verify(b => b.Display(game.Board), Times.Once);
+            boardDisplayerMock.Verify(b => b.DisplayBoard(game.Board), Times.Once);
 
         }
 
@@ -166,10 +166,42 @@ namespace NoughtsAndCrosses.Tests
             game.MakeNextMove(Player.Player1, 1);
 
             // Act
-            game.Play(Player.Player1, 2);
+            game.PlayAndCheck(Player.Player1, 2);
 
             // Assert
-            boardDisplayerMock.Verify(b => b.DisplayResult(Player.Player1));
+            boardDisplayerMock.Verify(b => b.DisplayWinner(Player.Player1));
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenAPlayerNotWins_ThenShouldNotDisplayResult()
+        {
+            // Assign
+            var boardDisplayerMock = new Mock<IBoardDisplayer>();
+            var game = new Game(boardDisplayerMock.Object);
+            game.InitializeBoard();
+            game.MakeNextMove(Player.Player1, 0);
+            game.MakeNextMove(Player.Player1, 1);
+
+            // Act
+            game.PlayAndCheck(Player.Player1, 3);
+
+            // Assert
+            boardDisplayerMock.Verify(b => b.DisplayWinner(Player.Player1), Times.Never);
+        }
+
+        [TestMethod]
+        public void GivenGameInitializes_WhenAPlayerPlays_ThenShouldCheckIfGameIsOver()
+        {
+            // Assign
+            var boardDisplayerMock = new Mock<IBoardDisplayer>();
+            var game = new Game(boardDisplayerMock.Object);
+            game.InitializeBoard();
+            
+            // Act
+            var isOver = game.PlayAndCheck(Player.Player1, 3);
+
+            // Assert
+            Assert.IsFalse(isOver);
         }
     }
 }

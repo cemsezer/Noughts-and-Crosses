@@ -8,7 +8,7 @@ namespace NoughtsAndCrosses
     /// </summary>
     public class BoardDisplayer : IBoardDisplayer
     {
-        public void Display(Board board)
+        public void DisplayBoard(Board board)
         {
             Console.Clear();
             Console.WriteLine("Player1: X");
@@ -21,9 +21,14 @@ namespace NoughtsAndCrosses
             Thread.Sleep(1000);
         }
 
-        public void DisplayResult(Player player)
+        public void DisplayWinner(Player player)
         {
-            Console.WriteLine("{0} has won the game", player);
+            Console.WriteLine("{0} wins", player);
+        }
+
+        public void DisplayNoWinner()
+        {
+            Console.WriteLine("No winner");
         }
 
         private static string ConvertToSign(Player? cellValue)

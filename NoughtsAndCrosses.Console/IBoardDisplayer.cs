@@ -2,7 +2,8 @@ namespace NoughtsAndCrosses
 {
     public interface IBoardDisplayer
     {
-        void Display(Board board);
-        void DisplayResult(Player player);
+        void DisplayBoard(Board board);
+        void DisplayWinner(Player player);
+        void DisplayNoWinner();
     }
 }

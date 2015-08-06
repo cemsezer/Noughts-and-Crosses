@@ -68,18 +68,24 @@ namespace NoughtsAndCrosses
 
         public bool IsGameFinished()
         {
-            return Board.Cells.All(cell => cell.HasValue);
+            var isGameFinished = Board.Cells.All(cell => cell.HasValue);
+            if (isGameFinished)
+                _boardDisplayer.DisplayNoWinner();
+            return isGameFinished;
         }
 
-        public void Play(Player player, int cellIndex)
+        public bool PlayAndCheck(Player player, int cellIndex)
         {
             MakeNextMove(player, cellIndex);
-            _boardDisplayer.Display(Board);
+            _boardDisplayer.DisplayBoard(Board);
 
             if (HasPlayerWon(player))
             {
-                _boardDisplayer.DisplayResult(player);
+                _boardDisplayer.DisplayWinner(player);
+                return true;
             }
+
+            return IsGameFinished();
         }
     }
 }
